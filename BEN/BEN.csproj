@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A940D9FE-0029-4C46-B043-3D3374838567}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BEN</RootNamespace>
+    <AssemblyName>BEN</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>BEN.ico</ApplicationIcon>
+    <StartupObject>BEN.My.MyApplication</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Andcredits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Andcredits.Designer.cs">
+      <DependentUpon>Andcredits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backnoiser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Backnoiser.Designer.cs">
+      <DependentUpon>Backnoiser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="checkPlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="checkPlay.Designer.cs">
+      <DependentUpon>checkPlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contactme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contactme.Designer.cs">
+      <DependentUpon>Contactme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EndWhite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EndWhite.Designer.cs">
+      <DependentUpon>EndWhite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finalstep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finalstep.Designer.cs">
+      <DependentUpon>Finalstep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Game1.Designer.cs">
+      <DependentUpon>Game1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Game2.Designer.cs">
+      <DependentUpon>Game2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Game3.Designer.cs">
+      <DependentUpon>Game3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstallShield.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstallShield.Designer.cs">
+      <DependentUpon>InstallShield.cs</DependentUpon>
+    </Compile>
+    <Compile Include="My\MyApplication.cs" />
+    <Compile Include="My\MyComputer.cs" />
+    <Compile Include="My\MyProject.cs" />
+    <Compile Include="My\MySettings.Designer.cs">
+      <DependentUpon>MySettings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="My\MySettingsProperty.cs" />
+    <Compile Include="My\Resources\BEN.Resources.Designer.cs">
+      <DependentUpon>BEN.Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="nextFirstGames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nextFirstGames.Designer.cs">
+      <DependentUpon>nextFirstGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="nextSecondGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nextSecondGame.Designer.cs">
+      <DependentUpon>nextSecondGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Openfiles2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Openfiles2.Designer.cs">
+      <DependentUpon>Openfiles2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="S2GameLost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="S2GameLost.Designer.cs">
+      <DependentUpon>S2GameLost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scream1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scream1.Designer.cs">
+      <DependentUpon>Scream1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screamer2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screamer2.Designer.cs">
+      <DependentUpon>Screamer2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screamer3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screamer3.Designer.cs">
+      <DependentUpon>Screamer3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screamer4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screamer4.Designer.cs">
+      <DependentUpon>Screamer4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screamer5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screamer5.Designer.cs">
+      <DependentUpon>Screamer5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SecondGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SecondGame.Designer.cs">
+      <DependentUpon>SecondGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Talking3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Talking3.Designer.cs">
+      <DependentUpon>Talking3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThirdGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThirdGame.Designer.cs">
+      <DependentUpon>ThirdGame.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Andcredits.resx">
+      <DependentUpon>Andcredits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backnoiser.resx">
+      <DependentUpon>Backnoiser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="checkPlay.resx">
+      <DependentUpon>checkPlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contactme.resx">
+      <DependentUpon>Contactme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EndWhite.resx">
+      <DependentUpon>EndWhite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finalstep.resx">
+      <DependentUpon>Finalstep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Game1.resx">
+      <DependentUpon>Game1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Game2.resx">
+      <DependentUpon>Game2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Game3.resx">
+      <DependentUpon>Game3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstallShield.resx">
+      <DependentUpon>InstallShield.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My\Resources\BEN.Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BEN.Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nextFirstGames.resx">
+      <DependentUpon>nextFirstGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nextSecondGame.resx">
+      <DependentUpon>nextSecondGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Openfiles2.resx">
+      <DependentUpon>Openfiles2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="S2GameLost.resx">
+      <DependentUpon>S2GameLost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scream1.resx">
+      <DependentUpon>Scream1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screamer2.resx">
+      <DependentUpon>Screamer2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screamer3.resx">
+      <DependentUpon>Screamer3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screamer4.resx">
+      <DependentUpon>Screamer4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screamer5.resx">
+      <DependentUpon>Screamer5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SecondGame.resx">
+      <DependentUpon>SecondGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Talking3.resx">
+      <DependentUpon>Talking3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThirdGame.resx">
+      <DependentUpon>ThirdGame.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="My\MySettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MySettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
