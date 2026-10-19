@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BEN - Error Game Solver</title>
+<style>
+  :root {
+    --bg: #111318;
+    --panel: #1b1e26;
+    --border: #3a3f4b;
+    --safe: #00c000;
+    --error: #c00000;
+    --text: #e8e8ea;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Segoe UI, Arial, sans-serif;
+  }
+  h1 {
+    font-size: 18px;
+    margin: 0 0 4px 0;
+  }
+  p.sub {
+    margin: 0 0 16px 0;
+    color: #9aa0ab;
+    font-size: 13px;
+  }
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  button.action {
+    background: #2a2e38;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  button.action:hover { background: #343945; }
+  .status {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 12px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    display: inline-block;
+    border: 1px solid #0006;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(16, 56px);
+    grid-auto-rows: 56px;
+    gap: 8px;
+    background: var(--panel);
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    width: max-content;
+  }
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #14161c;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #8f95a3;
+    user-select: none;
+    transition: background 0.1s, color 0.1s, opacity 0.15s;
+  }
+  .cell.safe.revealed {
+    background: var(--safe);
+    color: #fff;
+  }
+  .cell.error.revealed {
+    background: var(--error);
+    color: #fff;
+  }
+  .cell.used {
+    opacity: 0.35;
+  }
+  .footer {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #777d8a;
+    max-width: 900px;
+  }
+</style>
+</head>
+<body>
+  <h1>BEN &mdash; "Error Game" Solver</h1>
+  <p class="sub">Matches the SecondGame.cs grid: 112 cells, 51 safe / 61 cost a mistake. Click a cell as you click it in the real game to track progress, or hit "Reveal All" to see the full solution at once.</p>
+
+  <div class="toolbar">
+    <button class="action" id="revealAll">Reveal All</button>
+    <button class="action" id="hideAll">Hide All</button>
+    <button class="action" id="resetBtn">Reset Progress</button>
+    <div class="status" id="status">0/51 - 12 ERRORS LEFT</div>
+  </div>
+
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--safe)"></span> Safe (counts toward 51)</span>
+    <span><span class="swatch" style="background:var(--error)"></span> Mistake (costs 1 of 12)</span>
+    <span><span class="swatch" style="background:#14161c;border:1px solid #3a3f4b"></span> Unrevealed</span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="footer">
+    Layout and safe/error data derived directly from BEN/SecondGame.cs (BackColor 0,192,0 = safe, 192,0,0 = error) and BEN/SecondGame.Designer.cs (button Location). Clicking a cell here just marks it used for your own tracking &mdash; it does not touch the real game or your files.
+  </div>
+
+<script>
+  // row-major, 16 columns x 7 rows, matching the real game's on-screen layout.
+  // true = safe (counts toward 51), false = mistake (costs 1 of 12 errors).
+  const rows = [
+    [50,false],[3,true],[4,true],[5,true],[58,false],[59,false],[17,true],[23,true],[22,true],[60,false],[32,true],[35,true],[61,false],[62,false],[48,true],[64,false],
+    [51,false],[2,true],[92,false],[94,false],[7,true],[90,false],[18,true],[102,false],[100,false],[85,false],[34,true],[80,false],[37,true],[75,false],[47,true],[70,false],
+    [52,false],[1,true],[91,false],[93,false],[6,true],[89,false],[19,true],[101,false],[99,false],[84,false],[33,true],[79,false],[38,true],[74,false],[46,true],[69,false],
+    [53,false],[45,true],[8,true],[9,true],[112,false],[88,false],[20,true],[25,true],[24,true],[83,false],[29,true],[78,false],[36,true],[73,false],[44,true],[68,false],
+    [55,false],[54,true],[98,false],[96,false],[10,true],[87,false],[21,true],[106,false],[104,false],[82,false],[28,true],[77,false],[39,true],[72,false],[41,true],[67,false],
+    [57,false],[63,true],[97,false],[95,false],[11,true],[86,false],[16,true],[105,false],[103,false],[81,false],[31,true],[76,false],[40,true],[71,false],[43,true],[66,false],
+    [56,false],[12,true],[13,true],[14,true],[108,false],[107,false],[15,true],[27,true],[26,true],[111,false],[30,true],[110,false],[109,false],[42,true],[49,true],[65,false]
+  ];
+
+  const grid = document.getElementById('grid');
+  const statusEl = document.getElementById('status');
+  let found = 0;
+  let errorsLeft = 12;
+
+  function updateStatus() {
+    const label = errorsLeft === 1 ? 'ERROR LEFT' : 'ERRORS LEFT';
+    statusEl.textContent = `${found}/51 - ${errorsLeft} ${label}`;
+  }
+
+  rows.forEach(([buttonNum, isSafe]) => {
+    const cell = document.createElement('div');
+    cell.className = 'cell ' + (isSafe ? 'safe' : 'error');
+    cell.textContent = '?';
+    cell.dataset.button = buttonNum;
+    cell.title = 'Button' + buttonNum;
+
+    cell.addEventListener('click', () => {
+      if (cell.classList.contains('used')) return;
+      cell.classList.add('revealed');
+      cell.classList.add('used');
+      cell.textContent = isSafe ? 'S' : 'X';
+      if (isSafe) {
+        found++;
+      } else {
+        errorsLeft = Math.max(0, errorsLeft - 1);
+      }
+      updateStatus();
+    });
+
+    grid.appendChild(cell);
+  });
+
+  document.getElementById('revealAll').addEventListener('click', () => {
+    document.querySelectorAll('.cell').forEach(c => {
+      c.classList.add('revealed');
+      c.textContent = c.classList.contains('safe') ? 'S' : 'X';
+    });
+  });
+
+  document.getElementById('hideAll').addEventListener('click', () => {
+    document.querySelectorAll('.cell').forEach(c => {
+      if (!c.classList.contains('used')) {
+        c.classList.remove('revealed');
+        c.textContent = '?';
+      }
+    });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    found = 0;
+    errorsLeft = 12;
+    updateStatus();
+    document.querySelectorAll('.cell').forEach(c => {
+      c.classList.remove('used');
+      c.classList.remove('revealed');
+      c.textContent = '?';
+    });
+  });
+
+  updateStatus();
+</script>
+</body>
+</html>
